@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Antonio Cuomo — Senior Consultant · Delivery, Team & Software Architecture</title>
+<title>Antonio Cuomo · Senior Consultant · Delivery, Team & Software Architecture</title>
 <meta name="description" content="Antonio Cuomo, Senior Consultant @ Deloitte. 7+ anni di delivery, leadership di team e architetture software in banking, energia, sanità e trasporti.">
-<meta property="og:title" content="Antonio Cuomo — Senior Consultant · Delivery, Team & Software Architecture">
+<meta property="og:title" content="Antonio Cuomo · Senior Consultant · Delivery, Team & Software Architecture">
 <meta property="og:description" content="7+ anni di delivery, guida di team e architetture software in settori regolamentati: banking, energia, sanità, trasporti.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/antonio.jpg">
@@ -92,15 +92,15 @@ h1,h2,h3,p{margin:0}
 <!-- ============ HERO ============ -->
 <header id="home" style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 8vw 0;overflow:hidden">
   <div id="hero" style="max-width:1020px">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent-ink)">$ antonio.cuomo <span style="color:var(--muted)">— senior consultant @ deloitte · roma</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent-ink)">$ antonio.cuomo <span style="color:var(--muted)">· senior consultant @ deloitte · roma</span></div>
     <h1 style="margin:18px 0 0;font-size:clamp(42px,6.4vw,84px);font-weight:700;line-height:1.04;letter-spacing:-0.025em">
       <span lang="it">Accompagno persone e progetti software in ambienti <span style="background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">complessi e regolamentati</span>.</span>
       <span lang="en">I help people and software projects move through <span style="background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">complex, regulated environments</span>.</span>
     </h1>
     <div style="margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2vw,22px);color:var(--muted);min-height:1.5em"><span style="color:var(--accent-ink)">&gt;</span> <span id="typed"></span><span style="display:inline-block;width:10px;height:1.15em;vertical-align:text-bottom;background:var(--accent);animation:blink 1s step-end infinite"></span></div>
     <p style="margin:24px 0 0;max-width:600px;font-size:17px;line-height:1.7;color:var(--muted)">
-      <span lang="it">7+ anni tra delivery, team e stakeholder in banking, energia, sanità e trasporti — settori in cui affidabilità e conformità sono requisiti fondamentali.</span>
-      <span lang="en">7+ years across delivery, teams and stakeholders in banking, energy, healthcare and transport — sectors where reliability and compliance are core requirements.</span>
+      <span lang="it">7+ anni tra delivery, team e stakeholder in banking, energia, sanità e trasporti. Settori in cui affidabilità e conformità sono requisiti fondamentali.</span>
+      <span lang="en">7+ years across delivery, teams and stakeholders in banking, energy, healthcare and transport. Sectors where reliability and compliance are core requirements.</span>
     </p>
     <div style="display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;align-items:center">
       <a href="#contact" data-magnet class="btn-accent" style="padding:15px 30px;border-radius:10px;background:var(--accent);color:#04252a;font-weight:700;font-size:15.5px;box-shadow:0 0 28px var(--glow)"><span lang="it">Connettiamoci →</span><span lang="en">Let's connect →</span></a>
@@ -423,10 +423,15 @@ h1,h2,h3,p{margin:0}
     var doc = document.documentElement;
     var p = Math.min(1, scrollY / Math.max(1, doc.scrollHeight - innerHeight));
     if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
-    if (hero && !reduce) {
-      var k = Math.min(scrollY / (innerHeight * 0.7), 1);
-      hero.style.transform = 'translateY(' + (Math.min(scrollY, innerHeight) * 0.18) + 'px)';
+    // parallax + fade dell'hero solo su desktop: su mobile i bottoni devono
+    // restare pienamente visibili e cliccabili mentre si scorre.
+    if (hero && !reduce && window.innerWidth > 760) {
+      var k = Math.min(scrollY / (innerHeight * 1.1), 1);   // tolleranza più alta: fade più graduale
+      hero.style.transform = 'translateY(' + (Math.min(scrollY, innerHeight) * 0.14) + 'px)';
       hero.style.opacity = String(Math.max(0, 1 - k));
+    } else if (hero) {
+      hero.style.transform = '';
+      hero.style.opacity = '';
     }
     checkReveals();
   }
